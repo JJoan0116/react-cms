@@ -52,8 +52,6 @@ const swSrc = paths.swSrc;
 
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
-const sassRegex = /\.(scss|sass)$/;
-const sassModuleRegex = /\.module\.(scss|sass)$/;
 const lessRegex = /\.less$/;
 const lessModuleRegex = /\.module\.less$/;
 
@@ -80,7 +78,7 @@ module.exports = function (webpackEnv) {
 
   const shouldUseReactRefresh = env.raw.FAST_REFRESH;
 
-  const getStyleLoaders = (cssOptions, preProcessor) => {
+  const getStyleLoaders = (cssOptions, preProcessor, preProcessorOptions) => {
     const loaders = [
       isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
@@ -124,6 +122,7 @@ module.exports = function (webpackEnv) {
           loader: require.resolve(preProcessor),
           options: {
             sourceMap: true,
+            ...preProcessorOptions,
           },
         },
       );
@@ -408,35 +407,6 @@ module.exports = function (webpackEnv) {
               }),
             },
             {
-              test: sassRegex,
-              exclude: sassModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 3,
-                  sourceMap: isEnvProduction
-                    ? shouldUseSourceMap
-                    : isEnvDevelopment,
-                },
-                'sass-loader',
-              ),
-              sideEffects: true,
-            },
-            {
-              test: sassModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 3,
-                  sourceMap: isEnvProduction
-                    ? shouldUseSourceMap
-                    : isEnvDevelopment,
-                  modules: {
-                    getLocalIdent: getCSSModuleLocalIdent,
-                  },
-                },
-                'sass-loader',
-              ),
-            },
-            {
               test: lessRegex,
               exclude: lessModuleRegex,
               use: getStyleLoaders(
@@ -447,6 +417,11 @@ module.exports = function (webpackEnv) {
                     : isEnvDevelopment,
                 },
                 'less-loader',
+                {
+                  lessOptions: {
+                      javascriptEnabled: true,
+                  },
+                },
               ),
               sideEffects: true,
             },
@@ -463,6 +438,11 @@ module.exports = function (webpackEnv) {
                   },
                 },
                 'less-loader',
+                {
+                  lessOptions: {
+                      javascriptEnabled: true,
+                  },
+                },
               ),
             },
             {

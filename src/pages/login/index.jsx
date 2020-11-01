@@ -1,8 +1,8 @@
 import React from 'react';
-import './styles.less';
+import styles from './styles.module.less';
 
-const Demo = () => {
-    return <h1 className='color'>1111</h1>;
+export const Login = () => {
+  return (
+    <div>111</div>
+  );
 };
-
-export default Demo;
