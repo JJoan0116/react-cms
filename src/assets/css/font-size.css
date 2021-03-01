@@ -1,0 +1,26 @@
+/* @font-face {
+    font-family: "Number DIN Alternate";
+    src: local("DIN"), url(../fonts/DIN-Alternate-Bold.ttf);
+} */
+
+* {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: calc(100vw / 7.5);
+    max-width: 750px;
+    margin: auto;
+}
+
+@media screen and (min-width: 750px) {
+    html {
+        font-size: 100px;
+    }
+}
+
+body {
+    font-size: 0.28rem;
+}

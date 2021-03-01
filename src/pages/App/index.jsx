@@ -11,12 +11,12 @@ export const App = (props) => {
 
   return (
     <Row className={styles.contain}>
-      <Col span="3">
+      <Col span="3" className={styles.navLeft}>
         <NavLeft />
       </Col>
-      <Col span="21">
+      <Col span="21" className={styles.main}>
         <Header />
-        <div className={styles.main}>
+        <div className={styles.content}>
           {props.children}
         </div>
         <Footer />
