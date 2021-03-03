@@ -20,6 +20,18 @@
     text-align: center;
 }
 
+.breadcrumb::after {
+    display: inline-block;
+    content: '';
+    border-top: 10px solid #fff;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+}
+
 .weather {
     text-align: right;
     padding-right: 40px;

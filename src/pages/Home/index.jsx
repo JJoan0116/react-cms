@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './styles.module.less';
 
 export const Home = () => {
   return (
-    <div>hone</div>
+    <div className={styles.contain}>home</div>
   );
 };
